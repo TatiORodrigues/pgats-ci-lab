@@ -27,11 +27,11 @@ jobs:
 
       #instalacao do Yarn
       - name: Instalando Yarn
-        run: npm install -g Yarn
+        run: npm install -g yarn
       
       # instalacao das dependências
       - name: Instalando dependências
-        run: Yarn
+        run: yarn
 
       # instalacao do Playwright
       - name: Instalando dePlaywright
