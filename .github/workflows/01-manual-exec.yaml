@@ -27,11 +27,19 @@ jobs:
 
       #instalacao do Yarn
       - name: Instalando Yarn
+<<<<<<< HEAD
         run: napm install -g Yarn
       
       # instalacao das dependências
       - name: Instalando dependências
         run: Yarn
+=======
+        run: npm install -g yarn
+      
+      # instalacao das dependências
+      - name: Instalando dependências
+        run: yarn
+>>>>>>> adc21af63d691c82a287dbce96a5ac61f033a22c
 
       # instalacao do Playwright
       - name: Instalando dePlaywright
@@ -39,4 +47,8 @@ jobs:
 
       # instalacao os testes e2e
       - name: Executando Testes E2E
+<<<<<<< HEAD
         run: yarn run e2e
+=======
+        run: yarn run e2e
+>>>>>>> adc21af63d691c82a287dbce96a5ac61f033a22c
