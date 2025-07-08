@@ -7,12 +7,16 @@ name: "Execução por Deploy"
 # gatilho de exec manual = workflow_dispatch
 # gatilho de exec agendada = schedule
 # gatilho de exec a partir de outro pipe = workflow_run
+# types (tipos de evento): requested - aguardando na fila por uma máquina para ser executado / 
+#                           completed - depois de completo o primeiro workflow e 
+#                           in progress - executa enquanto o primeiro workflow ainda está rodando.
+
 
 on: 
   workflow_run:
     workflows: ["Execução Manual"]
-    types: #Tipo de evento
-      - completed
+    types: 
+      - completed 
 
 # trabalhos/tarefas dentro do pipeline = jobs
 jobs: 
