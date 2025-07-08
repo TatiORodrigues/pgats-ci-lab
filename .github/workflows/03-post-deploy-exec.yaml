@@ -11,7 +11,7 @@ name: "Execução por Deploy"
 on: 
   workflow_run:
     workflows: ["Execução Manual"]
-    types:
+    types: #Tipo de evento
       - completed
 
 # trabalhos/tarefas dentro do pipeline = jobs
