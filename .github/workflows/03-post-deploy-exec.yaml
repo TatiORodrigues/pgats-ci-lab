@@ -25,10 +25,14 @@ jobs:
     runs-on: ubuntu-latest
 
     # condicional - if
-    # `${ expressao}`
+    # `${ expressao}` ' '
     # == comparação
+    # condicional nível de pipeline: antes dos 'steps'
+    #comando para executar o workflow run se a execução de um outro workflow (que o disparou) 
+    #   tiver sido concluída com sucesso.
 
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    if: ${{ github.event.workflow_run.conclusion == 'success' }} 
 
     #passos do scripts de build
     steps:
@@ -56,8 +60,10 @@ jobs:
       - name: Executando Testes E2E
         run: yarn run e2e
 
+      # Condicionais a nível de steps, se a pipeline até aqui não foi cancelada então rode este step
+      # gera um arquivo de report no actions zipado para download
       - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() }} # execute este step de fazer upload dos artefatos exceto se ele for cancelado
         with:
           name: report
           path: ./playwright-report  
