@@ -1,25 +1,24 @@
 #CI de Nível 03 - Disparo após a conclusão de um pipeline
 
 # nome do nosso pipeline
-name: "Execução por Deploy"
+name: 'Execução por Deploy'
 
 # regras de disparo (gatilhos/triggers)
 # gatilho de exec manual = workflow_dispatch
 # gatilho de exec agendada = schedule
 # gatilho de exec a partir de outro pipe = workflow_run
-# types (tipos de evento): requested - aguardando na fila por uma máquina para ser executado / 
-#                           completed - depois de completo o primeiro workflow e 
+# types (tipos de evento): requested - aguardando na fila por uma máquina para ser executado /
+#                           completed - depois de completo o primeiro workflow e
 #                           in progress - executa enquanto o primeiro workflow ainda está rodando.
 
-
-on: 
+on:
   workflow_run:
-    workflows: ["Execução Manual"]
-    types: 
-      - completed 
+    workflows: ['Execução Manual']
+    types:
+      - completed
 
 # trabalhos/tarefas dentro do pipeline = jobs
-jobs: 
+jobs:
   e2e-tests:
     #maquina que o job vai executar
     runs-on: ubuntu-latest
@@ -28,11 +27,10 @@ jobs:
     # `${ expressao}` ' '
     # == comparação
     # condicional nível de pipeline: antes dos 'steps'
-    #comando para executar o workflow run se a execução de um outro workflow (que o disparou) 
+    #comando para executar o workflow run se a execução de um outro workflow (que o disparou)
     #   tiver sido concluída com sucesso.
 
-
-    if: ${{ github.event.workflow_run.conclusion == 'success' }} 
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     #passos do scripts de build
     steps:
@@ -47,7 +45,7 @@ jobs:
       #instalacao do Yarn
       - name: Instalando Yarn
         run: npm install -g yarn
-      
+
       # instalacao das dependências
       - name: Instalando dependências
         run: yarn
@@ -66,4 +64,4 @@ jobs:
         if: ${{ !cancelled() }} # execute este step de fazer upload dos artefatos exceto se ele for cancelado
         with:
           name: report
-          path: ./playwright-report  
+          path: ./playwright-report

@@ -1,6 +1,6 @@
 # CI de nível 04 - Disparo dos testes dentro da pipe de dev
 
-name: "Execução Integrada"
+name: 'Execução Integrada'
 
 on:
   workflow_dispatch:
@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Instalando Yarn
-        run: npm instal yarn
+        run: npm install -g yarn
 
       - name: Instalando dependências
         run: yarn
