@@ -1,0 +1,37 @@
+#CI de Nível 01 - Disparo manual a partir de 1 clique
+
+# nome do nosso pipeline
+name: 'Execução Manual'
+
+# regras de disparo (gatilhos/triggers)
+# gatilho de exec manual = workflow_dispatch
+
+on:
+  workflow_dispatch:
+
+# trabalhos/tarefas dentro do pipeline = jobs
+jobs:
+  e2e:
+    #maquina que o job vai executar
+    runs-on: ubuntu-latest
+
+    #passos do scripts de build
+    steps:
+      #clone do projeto
+      - uses: actions/checkout@v4
+
+      #instalacao do node
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      # instalacao das dependências
+      - name: Instalando dependências
+        run: yarn install
+
+      # Retirado a instalação do playwright, pois o teste não usa browser
+      # os testes são unitários em node 
+
+      # instalacao dos testes e2e
+      - name: Executando Testes E2E
+        run: yarn run e2e  # o arquivo "testes" está no comando "mocha testes/testes.js" no package json
