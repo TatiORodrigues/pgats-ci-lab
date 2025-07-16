@@ -29,8 +29,8 @@ describe('Testes do Projeto', () => {
 
   }) // teste vazio
 
-  it('segundo teste', () => {
-    throw new Error()  // Vai falhar de propósito (ok) 
+  it.skip('segundo teste', () => {
+    throw new Error()  // originalmente sem skip - Vai falhar de propósito (ok) 
   })
 
 })
